@@ -730,6 +730,7 @@ tests:
 - always_run: false
   as: e2e-vsphere-multi-vcenter-ovn
   optional: true
+  run_if_changed: vsphere
   steps:
     cluster_profile: vsphere-elastic
     env:
@@ -737,6 +738,7 @@ tests:
       FEATURE_SET: CustomNoUpgrade
       POOLS: vcenter.ci.ibmc.devcluster.openshift.com-cidatacenter-cicluster vcenter.ci.ibmc.devcluster.openshift.com-cidatacenter-1-cicluster-1
         vcenter-1.ci.ibmc.devcluster.openshift.com-cidatacenter-2-cicluster-3
+      TEST_SKIPS: 'In-tree Volumes \[Driver: vsphere\]'
     workflow: openshift-e2e-vsphere-multi-vcenter
   timeout: 6h0m0s
 - always_run: false
@@ -958,7 +960,7 @@ tests:
     env:
       FAIL_ON_CORE_DUMP: "false"
       OS_IMAGE_PLAN: NoPurchasePlan
-      OS_IMAGE_URN: azureopenshift:aro4:aro_414:412.92.20231021
+      OS_IMAGE_URN: azureopenshift:aro4:aro_417:417.94.20240701
     post:
     - chain: gather-network
     - chain: gather-core-dump

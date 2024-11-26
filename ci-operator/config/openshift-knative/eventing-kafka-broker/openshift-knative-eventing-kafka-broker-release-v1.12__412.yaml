@@ -281,7 +281,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-conformance
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-conformance
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -340,7 +341,7 @@ tests:
       timeout: 4h0m0s
     workflow: ipi-aws
 - as: test-conformance-aws-412-c
-  cron: 58 2 * * 2,6
+  cron: 44 2 * * 2,6
   steps:
     allow_best_effort_post_steps: true
     allow_skip_on_success: true
@@ -388,7 +389,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-conformance
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-conformance
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -494,7 +496,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-e2e
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -553,7 +556,7 @@ tests:
       timeout: 4h0m0s
     workflow: ipi-aws
 - as: test-e2e-aws-412-c
-  cron: 53 1 * * 2,6
+  cron: 57 0 * * 2,6
   steps:
     allow_best_effort_post_steps: true
     allow_skip_on_success: true
@@ -601,7 +604,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-e2e
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-e2e
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -707,7 +711,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -766,7 +771,7 @@ tests:
       timeout: 4h0m0s
     workflow: ipi-aws
 - as: test-reconciler-aws-412-c
-  cron: 17 5 * * 2,6
+  cron: 45 5 * * 2,6
   steps:
     allow_best_effort_post_steps: true
     allow_skip_on_success: true
@@ -814,7 +819,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -920,7 +926,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-encryption-auth
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler-encryption-auth
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -979,7 +986,7 @@ tests:
       timeout: 4h0m0s
     workflow: ipi-aws
 - as: test-reconciler-encryption-auth-aws-412-c
-  cron: 57 4 * * 2,6
+  cron: 32 2 * * 2,6
   steps:
     allow_best_effort_post_steps: true
     allow_skip_on_success: true
@@ -1027,7 +1034,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-encryption-auth
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler-encryption-auth
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -1133,7 +1141,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-keda
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler-keda
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display
@@ -1192,7 +1201,7 @@ tests:
       timeout: 4h0m0s
     workflow: ipi-aws
 - as: test-reconciler-keda-aws-412-c
-  cron: 25 4 * * 2,6
+  cron: 36 4 * * 2,6
   steps:
     allow_best_effort_post_steps: true
     allow_skip_on_success: true
@@ -1240,7 +1249,8 @@ tests:
     test:
     - as: test
       cli: latest
-      commands: SKIP_MESH_AUTH_POLICY_GENERATION=true make test-reconciler-keda
+      commands: GOPATH=/tmp/go PATH=$PATH:/tmp/go/bin SKIP_MESH_AUTH_POLICY_GENERATION=true
+        make test-reconciler-keda
       dependencies:
       - env: KNATIVE_EVENTING_KAFKA_BROKER_EVENT_DISPLAY
         name: knative-eventing-kafka-broker-event-display

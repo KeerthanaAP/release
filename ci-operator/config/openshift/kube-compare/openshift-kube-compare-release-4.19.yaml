@@ -36,7 +36,8 @@ images:
   to: kube-compare-artifacts
 promotion:
   to:
-  - name: "4.19"
+  - disabled: true
+    name: "4.19"
     namespace: ocp
 releases:
   initial:
@@ -69,6 +70,11 @@ tests:
   commands: GOFLAGS="-mod=readonly" make test
   container:
     from: bin
+- as: system-test
+  commands: GOFLAGS="-mod=readonly" make test
+  container:
+    from: bin
+  postsubmit: true
 - as: unit-report-creator
   commands: GOFLAGS="-mod=readonly" make test-report-creator
   container:
