@@ -27,6 +27,10 @@ base_images:
     name: hypershift-tests
     namespace: hypershift
     tag: latest
+  nested-environment-builder:
+    name: nested-environment-builder
+    namespace: ci
+    tag: latest
   openstack-installer:
     name: "4.18"
     namespace: ocp
@@ -574,6 +578,7 @@ tests:
     - chain: openshift-upgrade-qe-test
     workflow: baremetal-lab-upi
 - as: baremetalds-ipi-ovn-dualstack-primaryv6-f999
+  cluster: build05
   cron: 8 8 29 2 *
   steps:
     cluster_profile: equinix-ocp-metal-qe
@@ -587,6 +592,7 @@ tests:
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-baremetalds-ipi-ovn
 - as: baremetalds-ipi-ovn-ipv4-fips-canary-f28
+  cluster: build05
   cron: 26 10 2 * *
   steps:
     cluster_profile: equinix-ocp-metal-qe
@@ -599,6 +605,7 @@ tests:
     - chain: openshift-upgrade-qe-test-canary
     workflow: cucushift-installer-rehearse-baremetalds-ipi-ovn
 - as: baremetalds-ipi-ovn-ipv6-fips-f999
+  cluster: build05
   cron: 8 8 29 2 *
   steps:
     cluster_profile: equinix-ocp-metal-qe
@@ -613,8 +620,7 @@ tests:
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-baremetalds-ipi-ovn
 - as: baremetalds-ipi-ovn-lvms-f28
-  capabilities:
-  - intranet
+  cluster: build05
   cron: 17 3 3 * *
   steps:
     cluster_profile: equinix-ocp-metal-qe
@@ -985,6 +991,17 @@ tests:
     test:
     - chain: openshift-upgrade-qe-test
     workflow: cucushift-installer-rehearse-vsphere-ipi-ovn-custom-transit-switch-masquerade-subnet
+- as: vsphere-ipi-vsphere7-f28
+  cron: 8 14 25 * *
+  steps:
+    cluster_profile: vsphere-elastic
+    env:
+      HOSTS: "2"
+      NETWORK_TYPE: nested-multi-tenant
+      VCENTER_VERSION: "7"
+    test:
+    - chain: openshift-upgrade-qe-test
+    workflow: cucushift-installer-rehearse-vsphere-ipi-nested
 - as: vsphere-ipi-zones-template-f28
   cron: 37 21 23 * *
   steps:
