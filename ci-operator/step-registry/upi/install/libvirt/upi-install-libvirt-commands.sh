@@ -483,12 +483,24 @@ sleep 5m
 
 set +x
 echo "Completing UPI setup..."
+${OCPINSTALL} version
+
 if [ "$INSTALLER_TYPE" == "agent" ]; then
   ${OCPINSTALL} --dir="${INSTALL_DIR}" agent wait-for install-complete --log-level=debug 2>&1 | grep --line-buffered -v password &
 else
-  ${OCPINSTALL} --dir="${INSTALL_DIR}" wait-for install-complete 2>&1 | grep --line-buffered -v password &
+  (
+  ${OCPINSTALL} --dir="${INSTALL_DIR}" wait-for install-complete --log-level=debug 2>&1 | grep --line-buffered -v password
+) &
 fi
-wait "$!"
+PID=$!
+echo "Background command PID is $PID"
+echo "Failed OUTPUT waiting......"
+wait "$PID"
+echo "Failed OUTPUT after waiting...."
+
+# echo "Failed OUTPUT waiting......"
+# wait "$!"
+# echo "Failed OUTPUT after waiting...."
 save_credentials
 
 # Check for image registry availability
