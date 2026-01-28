@@ -237,6 +237,7 @@ else
       --format qcow2 \
       --capacity ${VOLUME_CAPACITY} || echo "Volume ${VOLUME_NAME} already exists, proceed without creation"
 
+    date
     # Upload the rhcos image to the source volume
     echo "Uploading rhcos image to source volume..."
     ${VIRSH} vol-upload \
@@ -244,6 +245,7 @@ else
       --pool ${POOL_NAME} \
       ${INSTALL_DIR}/${VOLUME_NAME}
   fi
+  date
 
   # Generate manifests for cluster modifications
   echo "Generating manifests..."
