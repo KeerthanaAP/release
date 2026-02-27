@@ -86,6 +86,13 @@ if [ ${FIPS_ENABLED} = "true" ]; then
 fips: true
 EOF
 fi
+echo "OSIMAGESTREAM: ${OSIMAGESTREAM}"
+if [ ! -z "${OSIMAGESTREAM}" ]; then
+	echo "Adding 'OSImageStream: ${OSIMAGESTREAM}' to the install config..."
+	cat >> "${SHARED_DIR}/install-config.yaml" << EOF
+osImageStream: "${OSIMAGESTREAM}"
+EOF
+fi
 
 if [ ! -z "${OSIMAGESTREAM}" ]; then
 	echo "Adding 'OSImageStream: ${OSIMAGESTREAM}' to the install config..."
