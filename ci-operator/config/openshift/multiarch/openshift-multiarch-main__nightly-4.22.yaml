@@ -576,6 +576,7 @@ tests:
       BRANCH: "4.22"
       DOMAIN_MEMORY: "34816"
       ETCD_DISK_SPEED: slow
+      OSIMAGESTREAM: rhel-10
       TEST_TYPE: conformance-parallel
       USE_RAMFS: "true"
     workflow: openshift-e2e-libvirt-upi
@@ -657,6 +658,7 @@ tests:
       BRANCH: "4.22"
       ETCD_DISK_SPEED: slow
       FEATURE_SET: TechPreviewNoUpgrade
+      OSIMAGESTREAM: rhel-10
       TEST_TYPE: conformance-serial
     workflow: openshift-e2e-libvirt-upi
 - as: ocp-e2e-ovn-powervc-multi-p-p
